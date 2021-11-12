@@ -19,11 +19,13 @@ public class FloralFlair implements ModInitializer {
 	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 	public static final Block FOXNIP = new FlowerBlock(StatusEffects.SLOWNESS, 8,FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque());
 	public static final Block ROSE = new FlowerBlock(StatusEffects.REGENERATION, 9,FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque());
+	public static final Block SUNSET_POPPY = new FlowerBlock(StatusEffects.FIRE_RESISTANCE, 11,FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque());
 	public static final Block JUNGLE_GEM = new FlowerBlock(StatusEffects.GLOWING, 10,FabricBlockSettings.copyOf(Blocks.DANDELION).nonOpaque());
 	public static final Block PULSE_PETAL = new FlowerBlock(StatusEffects.HEALTH_BOOST, 8,FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque());
 	public static final Block FROSTED_FOXNIP = new FlowerBlock(StatusEffects.SLOWNESS, 5,FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque());
 	public static final Block POTTED_FOXNIP = new FlowerPotBlock(FOXNIP,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
 	public static final Block POTTED_ROSE = new FlowerPotBlock(ROSE,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
+	public static final Block POTTED_SUNSET_POPPY = new FlowerPotBlock(ROSE,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
 	public static final Block POTTED_PULSE_PETAL = new FlowerPotBlock(PULSE_PETAL,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
 	public static final Block POTTED_FROSTED_FOXNIP = new FlowerPotBlock(FROSTED_FOXNIP,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
 	public static final Block POTTED_JUNGLE_GEM = new FlowerPotBlock(JUNGLE_GEM,FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque());
@@ -46,7 +48,10 @@ public class FloralFlair implements ModInitializer {
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "potted_gem_of_the_jungle"),POTTED_JUNGLE_GEM);
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "rose"), ROSE);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "rose"), new BlockItem(ROSE, new FabricItemSettings()));
-		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "potted_rose"),ROSE);
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "potted_rose"),POTTED_ROSE);
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "sunset_poppy"), SUNSET_POPPY);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "sunset_poppy"), new BlockItem(SUNSET_POPPY, new FabricItemSettings()));
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "potted_sunset_poppy"),POTTED_SUNSET_POPPY);
 		LOGGER.info("Hello Fabric world!");
 	}
 }

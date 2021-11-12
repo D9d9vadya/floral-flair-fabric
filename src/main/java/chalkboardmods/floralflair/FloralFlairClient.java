@@ -10,6 +10,12 @@ public class FloralFlairClient implements ClientModInitializer {
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.FOXNIP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_FOXNIP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.JUNGLE_GEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_JUNGLE_GEM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.ROSE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_ROSE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.SUNSET_POPPY, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_SUNSET_POPPY, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.FROSTED_FOXNIP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_FROSTED_FOXNIP, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.PULSE_PETAL, RenderLayer.getCutout());
