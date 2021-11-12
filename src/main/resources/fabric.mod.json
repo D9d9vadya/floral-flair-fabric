@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "id": "modid",
+  "id": "floral_flair",
   "version": "${version}",
 
   "name": "Example Mod",
@@ -14,16 +14,19 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/modid/icon.png",
+  "icon": "assets/floral_flair/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.fabricmc.example.ExampleMod"
+      "chalkboardmods.floralflair.FloralFlair"
+    ],
+    "client": [
+      "chalkboardmods.floralflair.FloralFlairClient"
     ]
   },
   "mixins": [
-    "modid.mixins.json"
+    "floral_flair.mixins.json"
   ],
 
   "depends": {
