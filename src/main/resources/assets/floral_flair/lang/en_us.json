@@ -14,5 +14,7 @@
     "block.floral_flair.potted_pulse_petal": "Potted Pulse Petal",
     "block.floral_flair.potted_gem_of_the_jungle": "Potted Gem of the Jungle",
     "block.floral_flair.potted_rose": "Potted Rose",
-    "block.floral_flair.potted_sunset_poppy": "Potted Sunset Poppy"
+    "block.floral_flair.potted_sunset_poppy": "Potted Sunset Poppy",
+
+    "text.autoconfig.option.floralflair.pulsePetalDensity": "Pulse Petal density"
 }

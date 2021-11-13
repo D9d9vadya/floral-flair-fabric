@@ -3,10 +3,10 @@
   "id": "floral_flair",
   "version": "${version}",
 
-  "name": "Example Mod",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "name": "Floral Flair",
+  "description": "A mod that adds flowers",
   "authors": [
-    "Me!"
+    "Ibex#3641"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "chalkboardmods.floralflair.FloralFlair"
+    ],
+    "modmenu": [
+      "chalkboardmods.floralflair.FloralModMenu"
     ],
     "client": [
       "chalkboardmods.floralflair.FloralFlairClient"

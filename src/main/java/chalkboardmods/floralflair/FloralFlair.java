@@ -1,5 +1,7 @@
 package chalkboardmods.floralflair;
 
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -74,5 +76,8 @@ public class FloralFlair implements ModInitializer {
 		// Muscari
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "muscari"), MUSCARI);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "muscari"), new BlockItem(MUSCARI, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		// Config
+		AutoConfig.register(FloralConfig.class, GsonConfigSerializer::new);
+		FloralConfig floralconfig = AutoConfig.getConfigHolder(FloralConfig.class).getConfig();
 	}
 }
