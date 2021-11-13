@@ -2,6 +2,6 @@
 {
     "parent": "block/flower_pot_cross",
     "textures": {
-        "plant": "floral_flair:block/sunset_poppy"
+        "plant": "floral_flair:block/rose"
     }
 }
