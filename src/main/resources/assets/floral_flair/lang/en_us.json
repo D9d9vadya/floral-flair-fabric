@@ -16,5 +16,12 @@
     "block.floral_flair.potted_rose": "Potted Rose",
     "block.floral_flair.potted_sunset_poppy": "Potted Sunset Poppy",
 
-    "text.autoconfig.option.floralflair.pulsePetalDensity": "Pulse Petal density"
+    "text.autoconfig.floral_flair.option.pulsePetalDensity": "Pulse Petal density",
+    "text.autoconfig.floral_flair.option.foxnipDensity": "Foxnip density",
+    "text.autoconfig.floral_flair.option.frostedFoxnipDensity": "Frosted Foxnip density",
+    "text.autoconfig.floral_flair.option.fairyBlossomDensity": "Fairy Blossom density",
+    "text.autoconfig.floral_flair.option.jungleGemDensity": "Jungle Gem density",
+    "text.autoconfig.floral_flair.option.roseDensity": "Rose density",
+    "text.autoconfig.floral_flair.option.sunsetPoppyDensity": "Sunset Poppy density",
+    "text.autoconfig.floral_flair.option.muscariDensity": "Muscari density"
 }
