@@ -5,6 +5,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 @Config(name =FloralFlair.MOD_ID)
@@ -35,7 +36,7 @@ public class FloralConfig implements ConfigData {
     public int muscariDensity = 3;
 
     public static void init() {
-        AutoConfig.register(FloralConfig.class, GsonConfigSerializer::new);
+        AutoConfig.register(FloralConfig.class, JanksonConfigSerializer::new);
     }
     public static FloralConfig get() {
         return AutoConfig.getConfigHolder(FloralConfig.class).getConfig();

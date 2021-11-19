@@ -1,33 +1,19 @@
 package chalkboardmods.floralflair;
 
-import me.shedaniel.autoconfig.AutoConfig;
-import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
-import net.minecraft.block.Block;
-import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.feature.*;
-import net.minecraft.world.gen.placer.SimpleBlockPlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-import net.minecraft.util.registry.*;
+import net.minecraft.util.registry.Registry;
 public class FloralFlair implements ModInitializer {
 
 	public static final String MOD_ID = "floral_flair";
-	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+//	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
 
 
 	// Foxnip
@@ -57,10 +43,6 @@ public class FloralFlair implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// Config
-		FloralConfig.init();
-		// Features
-		FloralFeatures.init();
 
 		// Foxnip
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "foxnip"), FOXNIP);
@@ -92,6 +74,10 @@ public class FloralFlair implements ModInitializer {
 		// Muscari
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "muscari"), MUSCARI);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "muscari"), new BlockItem(MUSCARI, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		// Config
+		FloralConfig.init();
+		// Features
+		FloralFeatures.init();
 
 	}
 }
