@@ -28,5 +28,7 @@ public class FloralFlairClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_PULSE_PETAL, RenderLayer.getCutout());
         // Fairy Blossom
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.FAIRY_BLOSSOM, RenderLayer.getCutout());
+        // Muscari
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.MUSCARI, RenderLayer.getCutout());
     }
 }
