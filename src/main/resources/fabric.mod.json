@@ -6,11 +6,14 @@
   "name": "Floral Flair",
   "description": "A mod that adds flowers",
   "authors": [
-    "Ibex#3641"
+    "Ibex#3641",
+    "MiteBeMana#9073",
+    "_JWX#2860",
+    "SuperMightByte#1261"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://discord.gg/ypcXBq6YaQ",
+    "sources": "https://github.com/Ibex80/floral-flair"
   },
 
   "license": "CC0-1.0",
