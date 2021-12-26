@@ -11,25 +11,25 @@ import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 @Config(name =FloralFlair.MOD_ID)
 public class FloralConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Pulse Petal flowers generating in forests [default = 8]")
+    @Comment("The density of Pulse Petal flowers generating in forests [default = 6]")
     @ConfigEntry.BoundedDiscrete(max = 24L)
-    public int pulsePetalDensity = 8;
-    @ConfigEntry.BoundedDiscrete(max = 24L)
-    @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Foxnip flowers generating in taigas [default = 8]")
-    public int foxnipDensity = 8;
+    public int pulsePetalDensity = 6;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("Frosted Foxnip flower spawning density in game [default = 8]")
-    public int frostedFoxnipDensity = 8;
+    @Comment("The density of Foxnip flowers generating in taigas [default = 4]")
+    public int foxnipDensity = 4;
+    @ConfigEntry.BoundedDiscrete(max = 24L)
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("Frosted Foxnip flower spawning density in game [default = 4]")
+    public int frostedFoxnipDensity = 4;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Fairy Blossom flowers generating in flower forests [default = 8]")
     public int fairyBlossomDensity = 8;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Gem of the Jungle flowers in jungles [default = 12]")
-    public int jungleGemDensity = 12;
+    @Comment("The density of Gem of the Jungle flowers in jungles [default = 5]")
+    public int jungleGemDensity = 5;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Rose flowers in forests and plains [default = 8]")

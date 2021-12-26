@@ -8,12 +8,13 @@
   "authors": [
     "Ibex#3641",
     "MiteBeMana#9073",
-    "_JWX#2860",
-    "SuperMightByte#1261"
+    "_JWX#6969",
+    "SirSuper_#1261",
+    "MiteBeParker#6811"
   ],
   "contact": {
     "homepage": "https://discord.gg/ypcXBq6YaQ",
-    "sources": "https://github.com/Ibex80/floral-flair"
+    "sources": "https://github.com/Chalkboard-Mods/floral-flair-fabric"
   },
 
   "license": "CC0-1.0",
@@ -36,10 +37,10 @@
   ],
 
   "depends": {
-    "fabricloader": ">=0.11.3",
+    "fabricloader": ">=0.12.12",
     "fabric": "*",
-    "minecraft": "1.17.x",
-    "java": ">=16"
+    "minecraft": "1.18.x",
+    "java": ">=17"
   },
   "suggests": {
     "another-mod": "*"

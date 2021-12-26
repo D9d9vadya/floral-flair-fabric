@@ -9,57 +9,60 @@ import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-import net.minecraft.world.gen.feature.Feature;
-import net.minecraft.world.gen.feature.RandomPatchFeatureConfig;
-import net.minecraft.world.gen.placer.DoublePlantPlacer;
-import net.minecraft.world.gen.placer.SimpleBlockPlacer;
-import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
+import net.minecraft.world.gen.decorator.BiomePlacementModifier;
+import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.decorator.SquarePlacementModifier;
+import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 
 public class FloralFeatures {
+    //Configured
+    public static ConfiguredFeature<?, ?> FOXNIP_CF;
+    public static ConfiguredFeature<?, ?> FROSTED_FOXNIP_CF;
+    public static ConfiguredFeature<?, ?> PULSE_PETAL_CF;
+    public static ConfiguredFeature<?, ?> FAIRY_BLOSSOM_CF;
+    public static ConfiguredFeature<?, ?> JUNGLE_GEM_CF;
+    public static ConfiguredFeature<?, ?> ROSE_CF;
+    public static ConfiguredFeature<?, ?> SUNSET_POPPY_CF;
+    public static ConfiguredFeature<?, ?> MUSCARI_CF;
 
-    public static final ConfiguredFeature<?,?> FOXNIP_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.FOXNIP.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().foxnipDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> FROSTED_FOXNIP_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.FROSTED_FOXNIP.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().frostedFoxnipDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> ROSE_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.ROSE.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().roseDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> SUNSET_POPPY_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.SUNSET_POPPY.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().sunsetPoppyDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> JUNGLE_GEM_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.JUNGLE_GEM.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().jungleGemDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> PULSE_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.PULSE_PETAL.getDefaultState()), SimpleBlockPlacer.INSTANCE)).tries(FloralConfig.get().pulsePetalDensity).spreadX(4).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> MUSCARI_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.MUSCARI.getDefaultState()), DoublePlantPlacer.INSTANCE)).tries(FloralConfig.get().muscariDensity).spreadX(3).spreadZ(3).spreadY(1).build());
-    public static final ConfiguredFeature<?,?> FAIRY_BLOSSOM_PATCH = Feature.RANDOM_PATCH.configure((new RandomPatchFeatureConfig.Builder (new SimpleBlockStateProvider(FloralFlair.FAIRY_BLOSSOM.getDefaultState()), DoublePlantPlacer.INSTANCE)).tries(FloralConfig.get().fairyBlossomDensity).spreadX(3).spreadZ(3).spreadY(1).build());
-    public static void init(){
-        // Foxnip
-        RegistryKey<ConfiguredFeature<?, ?>> foxnipPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
-                new Identifier(FloralFlair.MOD_ID, "foxnip_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, foxnipPatch.getValue(), FOXNIP_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.TAIGA_HILLS), GenerationStep.Feature.VEGETAL_DECORATION, foxnipPatch);
-        // Pulse Petal
-        RegistryKey<ConfiguredFeature<?, ?>> pulsePetalPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY,
-                new Identifier(FloralFlair.MOD_ID, "pulse_petal_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, pulsePetalPatch.getValue(), PULSE_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, pulsePetalPatch);
-        // Frosted Foxnip
-        RegistryKey<ConfiguredFeature<?, ?>> frostedFoxnipPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "frosted_foxnip_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, frostedFoxnipPatch.getValue(), FROSTED_FOXNIP_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA_MOUNTAINS, BiomeKeys.SNOWY_TAIGA_HILLS, BiomeKeys.SNOWY_TAIGA,BiomeKeys.SNOWY_MOUNTAINS, BiomeKeys.SNOWY_TUNDRA),GenerationStep.Feature.VEGETAL_DECORATION, frostedFoxnipPatch);
-        // Muscari
-        RegistryKey<ConfiguredFeature<?, ?>> muscariPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "muscari_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, muscariPatch.getValue(), MUSCARI_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA_MOUNTAINS, BiomeKeys.SNOWY_TAIGA_HILLS, BiomeKeys.SNOWY_TAIGA,BiomeKeys.SNOWY_MOUNTAINS, BiomeKeys.SNOWY_TUNDRA),GenerationStep.Feature.VEGETAL_DECORATION, muscariPatch);
-        // Fairy Blossom
-        RegistryKey<ConfiguredFeature<?, ?>> fairyBlossomPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, fairyBlossomPatch.getValue(), FAIRY_BLOSSOM_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.FOREST),GenerationStep.Feature.VEGETAL_DECORATION, fairyBlossomPatch);
-        // Rose
-        RegistryKey<ConfiguredFeature<?, ?>> rosePatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "rose_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, rosePatch.getValue(), ROSE_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.PLAINS, Biome.Category.FOREST),GenerationStep.Feature.VEGETAL_DECORATION, rosePatch);
-        // Jungle Gem
-        RegistryKey<ConfiguredFeature<?, ?>> jungleGemPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "jungle_gem_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, jungleGemPatch.getValue(), JUNGLE_GEM_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE),GenerationStep.Feature.VEGETAL_DECORATION, jungleGemPatch);
-        // Sunset Poppy
-        RegistryKey<ConfiguredFeature<?, ?>> sunsetPoppyPatch = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "sunset_poppy_patch"));
-        Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, sunsetPoppyPatch.getValue(), SUNSET_POPPY_PATCH);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SUNFLOWER_PLAINS, BiomeKeys.FLOWER_FOREST),GenerationStep.Feature.VEGETAL_DECORATION, sunsetPoppyPatch);
+    //Placed
+    public static PlacedFeature FOXNIP_PF;
+    public static PlacedFeature FROSTED_FOXNIP_PF;
+    public static PlacedFeature PULSE_PETAL_PF;
+    public static PlacedFeature FAIRY_BLOSSOM_PF;
+    public static PlacedFeature JUNGLE_GEM_PF;
+    public static PlacedFeature ROSE_PF;
+    public static PlacedFeature SUNSET_POPPY_PF;
+    public static PlacedFeature MUSCARI_PF;
+
+    public static void init() {
+        //Foxnip
+        RegistryKey<ConfiguredFeature<?, ?>> foxnipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "foxnip_config"));
+        RegistryKey<PlacedFeature> foxnipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "foxnip_placed"));
+        FOXNIP_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, foxnipConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().foxnipDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.FOXNIP))).withInAirFilter())));
+        FOXNIP_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, foxnipPlacement.getValue(), FOXNIP_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, foxnipPlacement);
+
+        //Frosted Foxnip
+        RegistryKey<ConfiguredFeature<?, ?>> frostedFoxnipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "frosted_foxnip_config"));
+        RegistryKey<PlacedFeature> frostedFoxnipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "frosted_foxnip_placed"));
+        FROSTED_FOXNIP_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, frostedFoxnipConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().frostedFoxnipDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.FROSTED_FOXNIP))).withInAirFilter())));
+        FROSTED_FOXNIP_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, frostedFoxnipPlacement.getValue(), FROSTED_FOXNIP_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, frostedFoxnipPlacement);
+
+        //Pulse Petal
+        RegistryKey<ConfiguredFeature<?, ?>> pulsePetalConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "pulse_petal_config"));
+        RegistryKey<PlacedFeature> pulsePetalPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "pulse_petal_placed"));
+        PULSE_PETAL_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, pulsePetalConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().pulsePetalDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.PULSE_PETAL))).withInAirFilter())));
+        PULSE_PETAL_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, pulsePetalPlacement.getValue(), PULSE_PETAL_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, pulsePetalPlacement);
+
+        //Jungle Gem
+        RegistryKey<ConfiguredFeature<?, ?>> jungleGemConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "jungle_gem_config"));
+        RegistryKey<PlacedFeature> jungleGemPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "jungle_gem_placed"));
+        JUNGLE_GEM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, jungleGemConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().jungleGemDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.JUNGLE_GEM))).withInAirFilter())));
+        JUNGLE_GEM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, jungleGemPlacement.getValue(), JUNGLE_GEM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.VEGETAL_DECORATION, jungleGemPlacement);
     }
 }
