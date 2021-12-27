@@ -14,6 +14,7 @@ import net.minecraft.world.gen.decorator.RarityFilterPlacementModifier;
 import net.minecraft.world.gen.decorator.SquarePlacementModifier;
 import net.minecraft.world.gen.feature.*;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
+import net.minecraft.world.gen.stateprovider.SimpleBlockStateProvider;
 
 public class FloralFeatures {
     //Configured
@@ -64,5 +65,26 @@ public class FloralFeatures {
         JUNGLE_GEM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, jungleGemConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().jungleGemDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.JUNGLE_GEM))).withInAirFilter())));
         JUNGLE_GEM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, jungleGemPlacement.getValue(), JUNGLE_GEM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
         BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.VEGETAL_DECORATION, jungleGemPlacement);
+
+        //Rose
+        RegistryKey<ConfiguredFeature<?, ?>> roseConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "rose_config"));
+        RegistryKey<PlacedFeature> rosePlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "rose_placed"));
+        ROSE_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, roseConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().roseDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.ROSE))).withInAirFilter())));
+        ROSE_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, rosePlacement.getValue(), ROSE_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW), GenerationStep.Feature.VEGETAL_DECORATION, rosePlacement);
+
+        //Sunset Poppy
+        RegistryKey<ConfiguredFeature<?, ?>> sunsetPoppyConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "sunset_poppy_config"));
+        RegistryKey<PlacedFeature> sunsetPoppyPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "sunset_poppy_placed"));
+        SUNSET_POPPY_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, sunsetPoppyConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().sunsetPoppyDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.SUNSET_POPPY))).withInAirFilter())));
+        SUNSET_POPPY_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, sunsetPoppyPlacement.getValue(), SUNSET_POPPY_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SAVANNA), GenerationStep.Feature.VEGETAL_DECORATION, sunsetPoppyPlacement);
+
+        //Fairy Blossom
+        RegistryKey<ConfiguredFeature<?, ?>> fairyBlossomConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_config"));
+        RegistryKey<PlacedFeature> fairyBlossomPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_placed"));
+        FAIRY_BLOSSOM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, fairyBlossomConfig.getValue(), Feature.RANDOM_PATCH.configure(ConfiguredFeatures.getDefaultConfiguredFeature(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.FAIRY_BLOSSOM))))));
+        FAIRY_BLOSSOM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, fairyBlossomPlacement.getValue(), FAIRY_BLOSSOM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.FLOWER_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, fairyBlossomPlacement);
     }
 }
