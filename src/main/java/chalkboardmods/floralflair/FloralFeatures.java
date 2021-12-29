@@ -26,6 +26,7 @@ public class FloralFeatures {
     public static ConfiguredFeature<?, ?> ROSE_CF;
     public static ConfiguredFeature<?, ?> SUNSET_POPPY_CF;
     public static ConfiguredFeature<?, ?> MUSCARI_CF;
+    public static ConfiguredFeature<?, ?> PURPUREUM_CF;
 
     //Placed
     public static PlacedFeature FOXNIP_PF;
@@ -36,6 +37,7 @@ public class FloralFeatures {
     public static PlacedFeature ROSE_PF;
     public static PlacedFeature SUNSET_POPPY_PF;
     public static PlacedFeature MUSCARI_PF;
+    public static PlacedFeature PURPUREUM_PF;
 
     public static void init() {
         //Foxnip
@@ -83,8 +85,22 @@ public class FloralFeatures {
         //Fairy Blossom
         RegistryKey<ConfiguredFeature<?, ?>> fairyBlossomConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_config"));
         RegistryKey<PlacedFeature> fairyBlossomPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_placed"));
-        FAIRY_BLOSSOM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, fairyBlossomConfig.getValue(), Feature.RANDOM_PATCH.configure(ConfiguredFeatures.getDefaultConfiguredFeature(Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.FAIRY_BLOSSOM))))));
+        FAIRY_BLOSSOM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, fairyBlossomConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().fairyBlossomDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.FAIRY_BLOSSOM))).withInAirFilter())));
         FAIRY_BLOSSOM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, fairyBlossomPlacement.getValue(), FAIRY_BLOSSOM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.FLOWER_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, fairyBlossomPlacement);
+
+        //Muscari
+        RegistryKey<ConfiguredFeature<?, ?>> muscariConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "muscari_config"));
+        RegistryKey<PlacedFeature> muscariPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "muscari_placed"));
+        MUSCARI_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, muscariConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().muscariDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.MUSCARI))).withInAirFilter())));
+        MUSCARI_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, muscariPlacement.getValue(), MUSCARI_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES), GenerationStep.Feature.VEGETAL_DECORATION, muscariPlacement);
+
+        //Purpureum
+        RegistryKey<ConfiguredFeature<?, ?>> purpureumConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "purpureum_config"));
+        RegistryKey<PlacedFeature> purpureumPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "purpureum_placed"));
+        PURPUREUM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, purpureumConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().purpureumDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralFlair.PURPUREUM))).withInAirFilter())));
+        PURPUREUM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, purpureumPlacement.getValue(), PURPUREUM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
+        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, purpureumPlacement);
     }
 }

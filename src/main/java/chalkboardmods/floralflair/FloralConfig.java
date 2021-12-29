@@ -32,15 +32,19 @@ public class FloralConfig implements ConfigData {
     public int jungleGemDensity = 5;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Rose flowers in forests and plains [default = 8]")
-    public int roseDensity = 8;
+    @Comment("The density of Rose flowers in forests and plains [default = 6]")
+    public int roseDensity = 6;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @Comment("The density of Muscari flowers in snowy places [default = 8]")
     public int muscariDensity = 8;
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Sunset Poppy flowers in sunflower plains [default = 8]")
-    public int sunsetPoppyDensity = 8;
+    @Comment("The density of Sunset Poppy flowers in savannas [default = 6]")
+    public int sunsetPoppyDensity = 6;
+    @ConfigEntry.BoundedDiscrete(max = 24L)
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("The density of Purpureum flowers in swamps [default = 7]")
+    public int purpureumDensity = 7;
 
     public static void init() {
         AutoConfig.register(FloralConfig.class, JanksonConfigSerializer::new);

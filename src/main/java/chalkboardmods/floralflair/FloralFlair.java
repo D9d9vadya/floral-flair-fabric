@@ -38,6 +38,9 @@ public class FloralFlair implements ModInitializer {
 	public static final Block FAIRY_BLOSSOM = new TallFlowerBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).noCollision().strength(0.0f).sounds(BlockSoundGroup.GRASS).strength(0.0F).nonOpaque());
 	// Muscari
 	public static final Block MUSCARI = new TallFlowerBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).noCollision().strength(0.0f).sounds(BlockSoundGroup.GRASS).strength(0.0F).nonOpaque());
+	// Purpureum
+	public static final Block PURPUREUM = new TallFlowerBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).noCollision().strength(0.0f).sounds(BlockSoundGroup.GRASS).strength(0.0F).nonOpaque());
+
 
 
 
@@ -74,6 +77,9 @@ public class FloralFlair implements ModInitializer {
 		// Muscari
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "muscari"), MUSCARI);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "muscari"), new BlockItem(MUSCARI, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		// Purpureum
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "purpureum"), PURPUREUM);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "purpureum"), new BlockItem(PURPUREUM, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
 		// Config
 		FloralConfig.init();
 		// Features

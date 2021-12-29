@@ -7,6 +7,7 @@
     "block.floral_flair.rose": "Rose",
     "block.floral_flair.sunset_poppy": "Sunset Poppy",
     "block.floral_flair.muscari": "Muscari",
+    "block.floral_flair.purpureum": "Purpureum",
 
 
     "block.floral_flair.potted_foxnip": "Potted Foxnip",
@@ -23,5 +24,6 @@
     "text.autoconfig.floral_flair.option.jungleGemDensity": "Jungle Gem density",
     "text.autoconfig.floral_flair.option.roseDensity": "Rose density",
     "text.autoconfig.floral_flair.option.sunsetPoppyDensity": "Sunset Poppy density",
-    "text.autoconfig.floral_flair.option.muscariDensity": "Muscari density"
+    "text.autoconfig.floral_flair.option.muscariDensity": "Muscari density",
+    "text.autoconfig.floral_flair.option.purureumDensity": "Purpureum density"
 }
