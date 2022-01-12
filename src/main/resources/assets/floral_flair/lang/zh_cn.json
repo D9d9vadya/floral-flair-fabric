@@ -1,0 +1,31 @@
+{
+    "text.autoconfig.floral_flair.title":"FloralFlair 配置",
+
+    "block.floral_flair.foxnip": "薄荷",
+    "block.floral_flair.frosted_foxnip": "霜冻薄荷",
+    "block.floral_flair.pulse_petal": "剪秋罗",
+    "block.floral_flair.fairy_blossom": "康乃馨",
+    "block.floral_flair.gem_of_the_jungle": "金盏花",
+    "block.floral_flair.rose": "蔷薇花",
+    "block.floral_flair.sunset_poppy": "日落罂粟",
+    "block.floral_flair.muscari": "勿忘我",
+    "block.floral_flair.purpureum": "紫薇花",
+
+
+    "block.floral_flair.potted_foxnip": "盆栽薄荷",
+    "block.floral_flair.potted_frosted_foxnip": "盆栽霜冻薄荷",
+    "block.floral_flair.potted_pulse_petal": "盆栽剪秋罗",
+    "block.floral_flair.potted_gem_of_the_jungle": "盆栽金盏花",
+    "block.floral_flair.potted_rose": "盆栽蔷薇花",
+    "block.floral_flair.potted_sunset_poppy": "盆栽日落罂粟",
+
+    "text.autoconfig.floral_flair.option.pulsePetalDensity": "剪秋罗密度",
+    "text.autoconfig.floral_flair.option.foxnipDensity": "薄荷密度",
+    "text.autoconfig.floral_flair.option.frostedFoxnipDensity": "霜冻薄荷密度",
+    "text.autoconfig.floral_flair.option.fairyBlossomDensity": "康乃馨密度",
+    "text.autoconfig.floral_flair.option.jungleGemDensity": "金盏花密度",
+    "text.autoconfig.floral_flair.option.roseDensity": "蔷薇花密度",
+    "text.autoconfig.floral_flair.option.sunsetPoppyDensity": "日落罂粟密度",
+    "text.autoconfig.floral_flair.option.muscariDensity": "勿忘我密度",
+    "text.autoconfig.floral_flair.option.purpureumDensity": "紫薇花密度"
+}
