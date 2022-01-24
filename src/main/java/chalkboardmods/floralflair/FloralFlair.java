@@ -43,7 +43,24 @@ public class FloralFlair implements ModInitializer {
 	// Purpureum
 	public static final Block PURPUREUM = new TallFlowerBlock(FabricBlockSettings.of(Material.REPLACEABLE_PLANT).noCollision().strength(0.0f).sounds(BlockSoundGroup.GRASS).strength(0.0F).nonOpaque());
 
-
+	// MIDNIGHT_ORCHID
+	public static final Block MIDNIGHT_ORCHID = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_MIDNIGHT_ORCHID = new FlowerPotBlock(MIDNIGHT_ORCHID, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+	// HYACINTH
+	public static final Block HYACINTH = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_HYACINTH = new FlowerPotBlock(HYACINTH, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+	// ANTHURIUM
+	public static final Block ANTHURIUM = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_ANTHURIUM = new FlowerPotBlock(ANTHURIUM, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+	// SNOW_FALL_FLOWER
+	public static final Block SNOW_FALL_FLOWER = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_SNOW_FALL_FLOWER = new FlowerPotBlock(SNOW_FALL_FLOWER, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+	// SPIKED_TULIP
+	public static final Block SPIKED_TULIP = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_SPIKED_TULIP = new FlowerPotBlock(SPIKED_TULIP, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+	// STONNETE
+	public static final Block STONNETE = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block POTTED_STONNETE = new FlowerPotBlock(STONNETE, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
 
 
 	@Override
@@ -82,6 +99,36 @@ public class FloralFlair implements ModInitializer {
 		// Purpureum
 		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "purpureum"), PURPUREUM);
 		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "purpureum"), new BlockItem(PURPUREUM, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		// Midnight_orchid
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "midnight_orchid"), MIDNIGHT_ORCHID);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "midnight_orchid"), new BlockItem(MIDNIGHT_ORCHID, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(MIDNIGHT_ORCHID, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(MIDNIGHT_ORCHID, 100, 60);
+		// Hyacinth
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "hyacinth"), HYACINTH);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "hyacinth"), new BlockItem(HYACINTH, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(HYACINTH, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(HYACINTH, 100, 60);
+		// Anthurium
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "anthurium"), ANTHURIUM);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "anthurium"), new BlockItem(ANTHURIUM, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(ANTHURIUM, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(ANTHURIUM, 100, 60);
+		// Snow_fall_flower
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "snow_fall_flower"), SNOW_FALL_FLOWER);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "snow_fall_flower"), new BlockItem(SNOW_FALL_FLOWER, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(SNOW_FALL_FLOWER, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(SNOW_FALL_FLOWER, 100, 60);
+		// Spiked_tulip
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "spiked_tulip"), SPIKED_TULIP);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "spiked_tulip"), new BlockItem(SPIKED_TULIP, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(SPIKED_TULIP, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(SPIKED_TULIP, 100, 60);
+		// Stonnete
+		Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "stonnete"), STONNETE);
+		Registry.register(Registry.ITEM, new Identifier(MOD_ID, "stonnete"), new BlockItem(STONNETE, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+		CompostingChanceRegistry.INSTANCE.add(STONNETE, 0.65F);
+		FlammableBlockRegistry.getDefaultInstance().add(STONNETE, 100, 60);
 		// Config
 		FloralConfig.init();
 		// Features

@@ -32,5 +32,23 @@ public class FloralFlairClient implements ClientModInitializer {
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.MUSCARI, RenderLayer.getCutout());
         // Purpureum
         BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.PURPUREUM, RenderLayer.getCutout());
+        // Midnight_orchid
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.MIDNIGHT_ORCHID, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_MIDNIGHT_ORCHID, RenderLayer.getCutout());
+        // Hyacinth
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.HYACINTH, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_HYACINTH, RenderLayer.getCutout());
+        // Anthurium
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.ANTHURIUM, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_ANTHURIUM, RenderLayer.getCutout());
+        // Snow_fall_flower
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.SNOW_FALL_FLOWER, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_SNOW_FALL_FLOWER, RenderLayer.getCutout());
+        // Spiked_tulip
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.SPIKED_TULIP, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_SPIKED_TULIP, RenderLayer.getCutout());
+        // Stonnete
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.STONNETE, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralFlair.POTTED_STONNETE, RenderLayer.getCutout());
     }
 }
