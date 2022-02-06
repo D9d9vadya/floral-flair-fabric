@@ -1,5 +1,6 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.client;
 
+import chalkboardmods.floralflair.core.FloralConfig;
 import com.terraformersmc.modmenu.api.ConfigScreenFactory;
 import com.terraformersmc.modmenu.api.ModMenuApi;
 import me.shedaniel.autoconfig.AutoConfig;

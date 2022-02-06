@@ -23,13 +23,13 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "chalkboardmods.floralflair.FloralFlair"
+      "chalkboardmods.floralflair.core.FloralFlair"
     ],
     "modmenu": [
-      "chalkboardmods.floralflair.FloralModMenu"
+      "chalkboardmods.floralflair.client.FloralModMenu"
     ],
     "client": [
-      "chalkboardmods.floralflair.FloralFlairClient"
+      "chalkboardmods.floralflair.client.ClientInit"
     ]
   },
   "mixins": [

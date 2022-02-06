@@ -1,4 +1,4 @@
-package chalkboardmods.floralflair.blocks;
+package chalkboardmods.floralflair.common.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

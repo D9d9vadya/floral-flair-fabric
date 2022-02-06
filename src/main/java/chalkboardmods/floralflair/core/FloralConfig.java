@@ -1,4 +1,4 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.core;
 
 import me.shedaniel.autoconfig.AutoConfig;
 import me.shedaniel.autoconfig.ConfigData;
@@ -8,7 +8,7 @@ import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 
 
-@Config(name =FloralFlair.MOD_ID)
+@Config(name = FloralFlair.MOD_ID)
 public class FloralConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Pulse Petal flowers generating in forests [default = 6]")

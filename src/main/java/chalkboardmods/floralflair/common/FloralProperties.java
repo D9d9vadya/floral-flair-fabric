@@ -1,4 +1,4 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.common;
 
 import net.minecraft.state.property.IntProperty;
 
