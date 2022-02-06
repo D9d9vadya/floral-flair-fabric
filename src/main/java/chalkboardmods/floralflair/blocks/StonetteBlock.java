@@ -1,4 +1,4 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -9,9 +9,9 @@ import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldView;
 
-public class StonetteFlower extends FlowerBlock {
+public class StonetteBlock extends FlowerBlock {
 
-    public StonetteFlower(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+    public StonetteBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
     }
     @Override

@@ -1,23 +1,19 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.blocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.ShapeContext;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
-import net.minecraft.world.BlockView;
 
 import static net.minecraft.state.property.Properties.FACING;
 
-public class AnthuriumFlower extends FlowerBlock {
+public class AnthuriumBlock extends FlowerBlock {
 
-    public AnthuriumFlower(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+    public AnthuriumBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
     }
     public VoxelShape makeShape(){

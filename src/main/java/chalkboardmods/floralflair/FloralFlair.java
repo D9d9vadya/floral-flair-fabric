@@ -1,5 +1,9 @@
 package chalkboardmods.floralflair;
 
+import chalkboardmods.floralflair.blocks.AnthuriumBlock;
+import chalkboardmods.floralflair.blocks.LunulaBlock;
+import chalkboardmods.floralflair.blocks.PottedLunulaBlock;
+import chalkboardmods.floralflair.blocks.StonetteBlock;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -10,9 +14,13 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.state.property.IntProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
+
+import java.util.function.ToIntFunction;
+
 public class FloralFlair implements ModInitializer {
 
 	public static final String MOD_ID = "floral_flair";
@@ -51,7 +59,7 @@ public class FloralFlair implements ModInitializer {
 	public static final Block HYACINTH = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
 	public static final Block POTTED_HYACINTH = new FlowerPotBlock(HYACINTH, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
 	// ANTHURIUM
-	public static final Block ANTHURIUM = new AnthuriumFlower(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block ANTHURIUM = new AnthuriumBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
 	public static final Block POTTED_ANTHURIUM = new FlowerPotBlock(ANTHURIUM, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
 	// SNOW_FALL_FLOWER
 	public static final Block SNOW_FALL_FLOWER = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
@@ -60,31 +68,15 @@ public class FloralFlair implements ModInitializer {
 	public static final Block SPIKED_TULIP = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
 	public static final Block POTTED_SPIKED_TULIP = new FlowerPotBlock(SPIKED_TULIP, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
 	// STONNETE
-	public static final Block STONNETE = new StonetteFlower(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+	public static final Block STONNETE = new StonetteBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
 	public static final Block POTTED_STONNETE = new FlowerPotBlock(STONNETE, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
 
-	public static final Block LUNULA = new LunulaFlower(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f).luminance((BlockState state) -> {
-		int stage = state.get(LunulaFlower.TIME);
-		if (stage == 3) {
-			return 5;
+	public static final Block LUNULA = new LunulaBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f).luminance(createLightLevelFromTimeBlockState(5)));
+	public static final Block POTTED_LUNULA = new PottedLunulaBlock(LUNULA, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque().strength(0.0f).luminance(createLightLevelFromTimeBlockState(5)));
 
-		}
-		else {
-			return 0;
-		}
-	}));
-	public static final Block POTTED_LUNULA = new FlowerPotBlock(LUNULA, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).nonOpaque().strength(0.0f).luminance((BlockState stated) -> {
-		int stage = stated.get(LunulaFlowerPot.TIME);
-		if (stage == 3) {
-			return 5;
-
-		}
-		else {
-			return 0;
-		}
-	}));
-
-
+	private static ToIntFunction<BlockState> createLightLevelFromTimeBlockState(int litLevel) {
+		return (state) -> state.get(FloralProperties.TIME) == 3 ? litLevel : 0;
+	}
 
 	@Override
 	public void onInitialize() {

@@ -1,15 +1,24 @@
-package chalkboardmods.floralflair;
+package chalkboardmods.floralflair.blocks;
 
+import chalkboardmods.floralflair.FloralProperties;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.BlockWithEntity;
 import net.minecraft.block.FlowerBlock;
-import net.minecraft.block.FlowerPotBlock;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
+import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.IntProperty;
+import net.minecraft.state.property.Properties;
+import net.minecraft.state.property.Property;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
@@ -17,20 +26,20 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Random;
+import java.util.function.ToIntFunction;
 
-public class LunulaFlowerPot extends FlowerPotBlock {
-    public static final IntProperty TIME = IntProperty.of("time", 0, 3);
+import static net.minecraft.state.property.Properties.FACING;
 
-    public LunulaFlowerPot(Block content, Settings settings) {
-        super(content, settings);
+public class LunulaBlock extends FlowerBlock {
+    public static final IntProperty TIME = FloralProperties.TIME;
+    public LunulaBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+        super(suspiciousStewEffect, effectDuration, settings);
         setDefaultState(getStateManager().getDefaultState().with(TIME, 0));
     }
-
-
     @Override
-    public void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
+    protected void appendProperties(StateManager.Builder<Block, BlockState> stateManager) {
         super.appendProperties(stateManager);
-        stateManager.add(TIME);
+        stateManager.add(new Property[] {TIME});
     }
     @Override
     public void onPlaced(World world, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack itemStack) {
@@ -74,5 +83,4 @@ public class LunulaFlowerPot extends FlowerPotBlock {
         }
         return state;
     }
-
 }
