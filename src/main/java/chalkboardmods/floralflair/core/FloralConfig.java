@@ -62,7 +62,7 @@ public class FloralConfig implements ConfigData {
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Anthurium flowers [default = 6]")
-    public int anthuriumDensity = 6;
+    public int anthuriumDensity = 12;
     // Snow_fall_flower
 
     @ConfigEntry.BoundedDiscrete(max = 24L)

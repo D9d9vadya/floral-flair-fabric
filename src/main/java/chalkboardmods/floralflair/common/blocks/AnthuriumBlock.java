@@ -6,8 +6,11 @@ import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
+import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
+
+import java.util.Random;
 
 import static net.minecraft.state.property.Properties.FACING;
 
@@ -15,13 +18,13 @@ public class AnthuriumBlock extends FlowerBlock {
 
     public AnthuriumBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
+        setDefaultState(getStateManager().getDefaultState().with(FACING, getRandomDirection()));
     }
-    public VoxelShape makeShape(){
-        VoxelShape shape = VoxelShapes.empty();
-        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(0.5, 0, 0, 0.5, 1, 1));
-        shape = VoxelShapes.union(shape, VoxelShapes.cuboid(-0.0625, 0.4375, -0.125, 0.9375, 0.4375, 0.875));
-
-        return shape;
+    public Direction getRandomDirection() {
+        Random random = new Random();
+        Direction[] d = {Direction.NORTH, Direction.EAST, Direction.SOUTH, Direction.WEST};
+        int e = random.nextInt(d.length);
+        return d[e];
     }
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {

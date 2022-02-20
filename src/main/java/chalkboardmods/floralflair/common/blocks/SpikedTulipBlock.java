@@ -4,19 +4,18 @@ import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.FlowerBlock;
 import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldView;
 
-public class StonetteBlock extends FlowerBlock {
+public class SpikedTulipBlock extends FlowerBlock {
 
-    public StonetteBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+    public SpikedTulipBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
     }
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos blockPos = pos.down();
         BlockState blockState = world.getBlockState(blockPos);
-        return blockState.isOf(Blocks.STONE) || blockState.isOf(Blocks.DIORITE)|| blockState.isOf(Blocks.GRANITE)|| blockState.isOf(Blocks.ANDESITE);
+        return blockState.isOf(Blocks.DRIPSTONE_BLOCK);
     }
 }

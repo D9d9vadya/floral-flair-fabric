@@ -46,7 +46,6 @@ public class LunulaBlock extends FlowerBlock {
         if (i > 24000L) {
             i = i % 24000L;
         }
-        System.out.println(i);
         if (i > 0L && i < 8200L){
             state = 0;
         }

@@ -1,10 +1,7 @@
 package chalkboardmods.floralflair.core.init;
 
 import chalkboardmods.floralflair.common.FloralProperties;
-import chalkboardmods.floralflair.common.blocks.AnthuriumBlock;
-import chalkboardmods.floralflair.common.blocks.LunulaBlock;
-import chalkboardmods.floralflair.common.blocks.PottedLunulaBlock;
-import chalkboardmods.floralflair.common.blocks.StonetteBlock;
+import chalkboardmods.floralflair.common.blocks.*;
 import chalkboardmods.floralflair.core.FloralFlair;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
@@ -68,7 +65,7 @@ public class FloralBlocks {
     public static final Block SNOW_FALL_FLOWER = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
     public static final Block POTTED_SNOW_FALL_FLOWER = new FlowerPotBlock(SNOW_FALL_FLOWER, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Spiked Tulip
-    public static final Block SPIKED_TULIP = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+    public static final Block SPIKED_TULIP = new SpikedTulipBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
     public static final Block POTTED_SPIKED_TULIP = new FlowerPotBlock(SPIKED_TULIP, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Stonette
     public static final Block STONNETE = new StonetteBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
