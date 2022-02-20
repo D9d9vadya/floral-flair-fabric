@@ -127,28 +127,20 @@ public class FloralBlocks {
         // Midnight Orchid
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "midnight_orchid"), MIDNIGHT_ORCHID);
         Registry.register(Registry.ITEM, new Identifier(FloralFlair.MOD_ID, "midnight_orchid"), new BlockItem(MIDNIGHT_ORCHID, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        CompostingChanceRegistry.INSTANCE.add(MIDNIGHT_ORCHID, 0.65F);
-        FlammableBlockRegistry.getDefaultInstance().add(MIDNIGHT_ORCHID, 100, 60);
 
         // Hyacinth
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "hyacinth"), HYACINTH);
         Registry.register(Registry.ITEM, new Identifier(FloralFlair.MOD_ID, "hyacinth"), new BlockItem(HYACINTH, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        CompostingChanceRegistry.INSTANCE.add(HYACINTH, 0.65F);
-        FlammableBlockRegistry.getDefaultInstance().add(HYACINTH, 100, 60);
-        
+
         // Anthurium
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "anthurium"), ANTHURIUM);
         Registry.register(Registry.ITEM, new Identifier(FloralFlair.MOD_ID, "anthurium"), new BlockItem(ANTHURIUM, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        CompostingChanceRegistry.INSTANCE.add(ANTHURIUM, 0.65F);
-        FlammableBlockRegistry.getDefaultInstance().add(ANTHURIUM, 100, 60);
-        
-        // Snow_fall_flower
+
+        // Snow Fall Flower
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "snow_fall_flower"), SNOW_FALL_FLOWER);
         Registry.register(Registry.ITEM, new Identifier(FloralFlair.MOD_ID, "snow_fall_flower"), new BlockItem(SNOW_FALL_FLOWER, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
-        CompostingChanceRegistry.INSTANCE.add(SNOW_FALL_FLOWER, 0.65F);
-        FlammableBlockRegistry.getDefaultInstance().add(SNOW_FALL_FLOWER, 100, 60);
-        
-        // Spiked_tulip
+
+        // Spiked Tulip
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "spiked_tulip"), SPIKED_TULIP);
         Registry.register(Registry.ITEM, new Identifier(FloralFlair.MOD_ID, "spiked_tulip"), new BlockItem(SPIKED_TULIP, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
 
