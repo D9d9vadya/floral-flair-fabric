@@ -153,7 +153,7 @@ public class FloralFeatures {
         RegistryKey<PlacedFeature> snow_fall_flowerPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "snow_fall_flower_placed"));
         SNOW_FALL_FLOWER_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, snow_fall_flowerConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().purpureumDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SNOW_FALL_FLOWER))).withInAirFilter())));
         SNOW_FALL_FLOWER_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, snow_fall_flowerPlacement.getValue(), SNOW_FALL_FLOWER_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.ICY), GenerationStep.Feature.VEGETAL_DECORATION, snow_fall_flowerPlacement);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES, BiomeKeys.SNOWY_BEACH), GenerationStep.Feature.VEGETAL_DECORATION, snow_fall_flowerPlacement);
         // Spiked_tulip
         RegistryKey<ConfiguredFeature<?, ?>> spiked_tulipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "spiked_tulip_config"));
         RegistryKey<PlacedFeature> spiked_tulipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "spiked_tulip_placed"));
