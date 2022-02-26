@@ -19,8 +19,7 @@ public class FloralComposting {
         CompostingChanceRegistry.INSTANCE.add(HYACINTH, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(ANTHURIUM, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(SNOW_FALL_FLOWER, 0.65F);
-        CompostingChanceRegistry.INSTANCE.add(SPIKED_TULIP, 0.65F);
-        CompostingChanceRegistry.INSTANCE.add(STONNETE, 0.65F);
         CompostingChanceRegistry.INSTANCE.add(LUNULA, 0.65F);
+        CompostingChanceRegistry.INSTANCE.add(SCILLA, 0.65F);
     }
 }

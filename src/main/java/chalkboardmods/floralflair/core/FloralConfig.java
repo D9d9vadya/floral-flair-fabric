@@ -69,18 +69,26 @@ public class FloralConfig implements ConfigData {
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Snow_fall_flower flowers [default = 6]")
     public int snow_fall_flowerDensity = 6;
-    // Spiked_tulip
+    // Lunula
 
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
     @Comment("The density of Spiked_tulip flowers [default = 6]")
     public int spiked_tulipDensity = 6;
+    @ConfigEntry.BoundedDiscrete(max = 24L)
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("The density of Lunula flowers [default = 6]")
+    public int lunulaDensity = 6;
     // Stonnete
 
     @ConfigEntry.BoundedDiscrete(max = 24L)
     @ConfigEntry.Gui.RequiresRestart
-    @Comment("The density of Stonnete flowers [default = 6]")
-    public int stonneteDensity = 6;
+    @Comment("The density of Stonnete flowers [default = 3]")
+    public int stonneteDensity = 3;
+    @ConfigEntry.BoundedDiscrete(max = 24L)
+    @ConfigEntry.Gui.RequiresRestart
+    @Comment("The density of Scilla flowers [default = 6]")
+    public int scillaDensity = 6;
 
     public static void init() {
         AutoConfig.register(FloralConfig.class, JanksonConfigSerializer::new);

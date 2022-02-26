@@ -60,13 +60,16 @@ public class FloralBlocks {
     public static final Block POTTED_HYACINTH = new FlowerPotBlock(HYACINTH, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Anthurium
     public static final Block ANTHURIUM = new AnthuriumBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
-    public static final Block POTTED_ANTHURIUM = new FlowerPotBlock(ANTHURIUM, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+    public static final Block POTTED_ANTHURIUM = new PottedAnthuriumBlock(ANTHURIUM, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Snow Fall Flower
     public static final Block SNOW_FALL_FLOWER = new FlowerBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
     public static final Block POTTED_SNOW_FALL_FLOWER = new FlowerPotBlock(SNOW_FALL_FLOWER, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Spiked Tulip
     public static final Block SPIKED_TULIP = new SpikedTulipBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
     public static final Block POTTED_SPIKED_TULIP = new FlowerPotBlock(SPIKED_TULIP, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
+    // Scilla
+    public static final Block SCILLA = new ScillaBlock(StatusEffects.WEAKNESS, 11, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
+    public static final Block POTTED_SCILLA = new FlowerPotBlock(SCILLA, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
     // Stonette
     public static final Block STONNETE = new StonetteBlock(StatusEffects.RESISTANCE, 8, FabricBlockSettings.copyOf(Blocks.POPPY).nonOpaque().strength(0.0f));
     public static final Block POTTED_STONNETE = new FlowerPotBlock(STONNETE, FabricBlockSettings.copyOf(Blocks.FLOWER_POT).strength(0.0F).nonOpaque());
@@ -152,5 +155,19 @@ public class FloralBlocks {
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "lunula"), LUNULA);
         Registry.register(Registry.ITEM ,new Identifier(FloralFlair.MOD_ID, "lunula"), new BlockItem(LUNULA, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
         Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_lunula"),POTTED_LUNULA);
+
+        // Scilla
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "scilla"), SCILLA);
+        Registry.register(Registry.ITEM ,new Identifier(FloralFlair.MOD_ID, "scilla"), new BlockItem(SCILLA, new FabricItemSettings().group(ItemGroup.DECORATIONS)));
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_scilla"),POTTED_SCILLA);
+
+
+
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_midnight_orchid"),POTTED_MIDNIGHT_ORCHID);
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_hyacinth"),POTTED_HYACINTH);
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_snow_fall_flower"),POTTED_SNOW_FALL_FLOWER);
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_spiked_tulip"),POTTED_SPIKED_TULIP);
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_stonnete"),POTTED_STONNETE);
+        Registry.register(Registry.BLOCK, new Identifier(FloralFlair.MOD_ID, "potted_anthurium"),POTTED_ANTHURIUM);
     }
 }

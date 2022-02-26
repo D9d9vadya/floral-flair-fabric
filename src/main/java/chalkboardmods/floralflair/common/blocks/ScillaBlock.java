@@ -9,19 +9,19 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.WorldView;
 
-public class SpikedTulipBlock extends FlowerBlock {
+public class ScillaBlock extends FlowerBlock {
 
-    public SpikedTulipBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
+    public ScillaBlock(StatusEffect suspiciousStewEffect, int effectDuration, Settings settings) {
         super(suspiciousStewEffect, effectDuration, settings);
     }
     @Override
     protected boolean canPlantOnTop(BlockState floor, BlockView world, BlockPos pos) {
-        return floor.isOf(Blocks.DRIPSTONE_BLOCK) || floor.isIn(BlockTags.BASE_STONE_OVERWORLD);
+        return floor.isOf(Blocks.SNOW_BLOCK) || floor.isOf(Blocks.POWDER_SNOW);
     }
     @Override
     public boolean canPlaceAt(BlockState state, WorldView world, BlockPos pos) {
         BlockPos blockPos = pos.down();
         BlockState blockState = world.getBlockState(blockPos);
-        return blockState.isOf(Blocks.DRIPSTONE_BLOCK)|| blockState.isIn(BlockTags.BASE_STONE_OVERWORLD);
+        return blockState.isOf(Blocks.SNOW_BLOCK) || blockState.isOf(Blocks.POWDER_SNOW);
     }
 }

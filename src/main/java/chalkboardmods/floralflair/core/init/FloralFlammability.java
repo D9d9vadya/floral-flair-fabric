@@ -20,6 +20,7 @@ public class FloralFlammability {
         FlammableBlockRegistry.getDefaultInstance().add(ANTHURIUM, 100, 60);
         FlammableBlockRegistry.getDefaultInstance().add(SNOW_FALL_FLOWER, 100, 60);
         FlammableBlockRegistry.getDefaultInstance().add(LUNULA, 100, 60);
+        FlammableBlockRegistry.getDefaultInstance().add(SCILLA, 100, 60);
 
     }
 }

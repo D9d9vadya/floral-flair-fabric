@@ -69,6 +69,9 @@ public class ClientInit implements ClientModInitializer {
         // Lunula
         BlockRenderLayerMap.INSTANCE.putBlock(FloralBlocks.LUNULA, RenderLayer.getCutout());
         BlockRenderLayerMap.INSTANCE.putBlock(FloralBlocks.POTTED_LUNULA, RenderLayer.getCutout());
+        // Scilla
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralBlocks.SCILLA, RenderLayer.getCutout());
+        BlockRenderLayerMap.INSTANCE.putBlock(FloralBlocks.POTTED_SCILLA, RenderLayer.getCutout());
 
 //        FabricModelPredicateProviderRegistry.register(Item.fromBlock(FloralBlocks.LUNULA), new Identifier("time"), new UnclampedModelPredicateProvider(){
 //            private double time;
