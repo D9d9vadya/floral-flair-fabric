@@ -1,9 +1,6 @@
 package chalkboardmods.floralflair.core;
 
-import chalkboardmods.floralflair.core.init.FloralBlocks;
-import chalkboardmods.floralflair.core.init.FloralComposting;
-import chalkboardmods.floralflair.core.init.FloralFeatures;
-import chalkboardmods.floralflair.core.init.FloralFlammability;
+import chalkboardmods.floralflair.core.init.*;
 import net.fabricmc.api.ModInitializer;
 
 public class FloralFlair implements ModInitializer {
@@ -18,7 +15,10 @@ public class FloralFlair implements ModInitializer {
 		// Config
 		FloralConfig.init();
 		// Features
-		FloralFeatures.init();
+		FloralFeatures.configuredRegister();
+		FloralFeatures.placedRegister();
+		//Generation
+		FloralGeneration.init();
 		// Composting
 		FloralComposting.init();
 		// Flammability

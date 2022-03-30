@@ -1,193 +1,108 @@
 package chalkboardmods.floralflair.core.init;
 
-import chalkboardmods.floralflair.common.FloralProperties;
-import chalkboardmods.floralflair.common.blocks.AnthuriumBlock;
 import chalkboardmods.floralflair.core.FloralConfig;
 import chalkboardmods.floralflair.core.FloralFlair;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.collection.DataPool;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.intprovider.UniformIntProvider;
 import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.util.registry.RegistryKey;
-import net.minecraft.world.Heightmap;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.biome.BiomeKeys;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.blockpredicate.BlockPredicate;
-import net.minecraft.world.gen.decorator.*;
+import net.minecraft.util.registry.RegistryEntry;
 import net.minecraft.world.gen.feature.*;
+import net.minecraft.world.gen.placementmodifier.BiomePlacementModifier;
+import net.minecraft.world.gen.placementmodifier.CountPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.RarityFilterPlacementModifier;
+import net.minecraft.world.gen.placementmodifier.SquarePlacementModifier;
 import net.minecraft.world.gen.stateprovider.BlockStateProvider;
 import net.minecraft.world.gen.stateprovider.WeightedBlockStateProvider;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class FloralFeatures {
 
     private static final WeightedBlockStateProvider ANTHURIUM_WEIGHTS = new WeightedBlockStateProvider(new DataPool.Builder<BlockState>().add(FloralBlocks.ANTHURIUM.getDefaultState().with(Properties.FACING, Direction.NORTH), 4).add(FloralBlocks.ANTHURIUM.getDefaultState().with(Properties.FACING, Direction.EAST), 4).add(FloralBlocks.ANTHURIUM.getDefaultState().with(Properties.FACING, Direction.SOUTH), 4).add(FloralBlocks.ANTHURIUM.getDefaultState().with(Properties.FACING, Direction.WEST), 4));
+
     //Configured
-    public static ConfiguredFeature<?, ?> FOXNIP_CF;
-    public static ConfiguredFeature<?, ?> FROSTED_FOXNIP_CF;
-    public static ConfiguredFeature<?, ?> PULSE_PETAL_CF;
-    public static ConfiguredFeature<?, ?> FAIRY_BLOSSOM_CF;
-    public static ConfiguredFeature<?, ?> JUNGLE_GEM_CF;
-    public static ConfiguredFeature<?, ?> ROSE_CF;
-    public static ConfiguredFeature<?, ?> SUNSET_POPPY_CF;
-    public static ConfiguredFeature<?, ?> MUSCARI_CF;
-    public static ConfiguredFeature<?, ?> PURPUREUM_CF;
-    public static ConfiguredFeature<?, ?> MIDNIGHT_ORCHID_CF;
-    public static ConfiguredFeature<?, ?> HYACINTH_CF;
-    public static ConfiguredFeature<?, ?> SNOW_FALL_FLOWER_CF;
-    public static ConfiguredFeature<?, ?> SPIKED_TULIP_CF;
-    public static ConfiguredFeature<?, ?> STONNETE_CF;
-    public static ConfiguredFeature<?, ?> LUNULA_CF;
-    public static ConfiguredFeature<?, ?> ANTHURIUM_CF;
-    public static ConfiguredFeature<?,?> SCILLA_CF;
+    public static ConfiguredFeature<?, ?> FOXNIP_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 4, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FOXNIP)))));
+    public static ConfiguredFeature<?, ?> FROSTED_FOXNIP_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 4, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FROSTED_FOXNIP)))));
+    public static ConfiguredFeature<?, ?> PULSE_PETAL_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 3, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.PULSE_PETAL)))));
+    public static ConfiguredFeature<?, ?> FAIRY_BLOSSOM_CONFIGURED = new ConfiguredFeature<>(Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FAIRY_BLOSSOM))));
+    public static ConfiguredFeature<?, ?> JUNGLE_GEM_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 5, 4, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.JUNGLE_GEM)))));
+    public static ConfiguredFeature<?, ?> ROSE_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 4, 1, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.ROSE)))));
+    public static ConfiguredFeature<?, ?> SUNSET_POPPY_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 7, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SUNSET_POPPY)))));
+    public static ConfiguredFeature<?, ?> MUSCARI_CONFIGURED = new ConfiguredFeature<>(Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.MUSCARI))));
+    public static ConfiguredFeature<?, ?> PURPUREUM_CONFIGURED = new ConfiguredFeature<>(Feature.RANDOM_PATCH, ConfiguredFeatures.createRandomPatchFeatureConfig(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.PURPUREUM))));
+    public static ConfiguredFeature<?, ?> MIDNIGHT_ORCHID_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.MIDNIGHT_ORCHID)))));
+    public static ConfiguredFeature<?, ?> HYACINTH_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.HYACINTH)))));
+    public static ConfiguredFeature<?, ?> SNOW_FALL_FLOWER_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SNOW_FALL_FLOWER)))));
+    public static ConfiguredFeature<?, ?> SPIKED_TULIP_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SPIKED_TULIP)))));
+    public static ConfiguredFeature<?, ?> STONNETE_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.STONNETE)))));
+    public static ConfiguredFeature<?, ?> LUNULA_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.LUNULA)))));
+    public static ConfiguredFeature<?, ?> ANTHURIUM_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(ANTHURIUM_WEIGHTS))));
+    public static ConfiguredFeature<?, ?> SCILLA_CONFIGURED = new ConfiguredFeature<>(Feature.FLOWER, new RandomPatchFeatureConfig(64, 6, 2, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK, new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SCILLA)))));
 
     //Placed
-    public static PlacedFeature FOXNIP_PF;
-    public static PlacedFeature FROSTED_FOXNIP_PF;
-    public static PlacedFeature PULSE_PETAL_PF;
-    public static PlacedFeature FAIRY_BLOSSOM_PF;
-    public static PlacedFeature JUNGLE_GEM_PF;
-    public static PlacedFeature ROSE_PF;
-    public static PlacedFeature SUNSET_POPPY_PF;
-    public static PlacedFeature MUSCARI_PF;
-    public static PlacedFeature PURPUREUM_PF;
-    public static PlacedFeature MIDNIGHT_ORCHID_PF;
-    public static PlacedFeature HYACINTH_PF;
-    public static PlacedFeature SNOW_FALL_FLOWER_PF;
-    public static PlacedFeature SPIKED_TULIP_PF;
-    public static PlacedFeature STONNETE_PF;
-    public static PlacedFeature LUNULA_PF;
-    public static PlacedFeature ANTHURIUM_PF;
-    public static PlacedFeature SCILLA_PF;
+    public static PlacedFeature FOXNIP_PLACED = new PlacedFeature(RegistryEntry.of(FOXNIP_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().foxnipDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature FROSTED_FOXNIP_PLACED = new PlacedFeature(RegistryEntry.of(FROSTED_FOXNIP_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().frostedFoxnipDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature PULSE_PETAL_PLACED = new PlacedFeature(RegistryEntry.of(PULSE_PETAL_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().pulsePetalDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature FAIRY_BLOSSOM_PLACED = new PlacedFeature(RegistryEntry.of(FAIRY_BLOSSOM_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().fairyBlossomDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature JUNGLE_GEM_PLACED = new PlacedFeature(RegistryEntry.of(JUNGLE_GEM_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().jungleGemDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature ROSE_PLACED = new PlacedFeature(RegistryEntry.of(ROSE_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().roseDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature SUNSET_POPPY_PLACED = new PlacedFeature(RegistryEntry.of(SUNSET_POPPY_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().sunsetPoppyDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature MUSCARI_PLACED = new PlacedFeature(RegistryEntry.of(MUSCARI_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().muscariDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature PURPUREUM_PLACED = new PlacedFeature(RegistryEntry.of(PURPUREUM_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().purpureumDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature MIDNIGHT_ORCHID_PLACED = new PlacedFeature(RegistryEntry.of(MIDNIGHT_ORCHID_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().midnightOrchidDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature HYACINTH_PLACED = new PlacedFeature(RegistryEntry.of(HYACINTH_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().hyacinthDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature SNOW_FALL_PLACED = new PlacedFeature(RegistryEntry.of(SNOW_FALL_FLOWER_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().snowFallFlowerDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature SPIKED_TULIP_PLACED = new PlacedFeature(RegistryEntry.of(SPIKED_TULIP_CONFIGURED), List.of(CountPlacementModifier.of(FloralConfig.get().spikedTulipDensity), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_120_RANGE,  BiomePlacementModifier.of()));
+    public static PlacedFeature STONNETE_PLACED = new PlacedFeature(RegistryEntry.of(STONNETE_CONFIGURED), List.of(CountPlacementModifier.of(FloralConfig.get().stonneteDensity), SquarePlacementModifier.of(), PlacedFeatures.BOTTOM_TO_120_RANGE,  BiomePlacementModifier.of()));
+    public static PlacedFeature LUNULA_PLACED = new PlacedFeature(RegistryEntry.of(LUNULA_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().lunulaDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature ANTHURIUM_PLACED = new PlacedFeature(RegistryEntry.of(ANTHURIUM_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().anthuriumDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
+    public static PlacedFeature SCILLA_PLACED = new PlacedFeature(RegistryEntry.of(SCILLA_CONFIGURED), List.of(RarityFilterPlacementModifier.of(FloralConfig.get().scillaDensity), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP,  BiomePlacementModifier.of()));
 
-    public static void init() {
+    public static void configuredRegister() {
+        Registry<ConfiguredFeature<?, ?>> registry = BuiltinRegistries.CONFIGURED_FEATURE;
 
-        //Foxnip
-        RegistryKey<ConfiguredFeature<?, ?>> foxnipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "foxnip_config"));
-        RegistryKey<PlacedFeature> foxnipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "foxnip_placed"));
-        FOXNIP_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, foxnipConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().foxnipDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FOXNIP))).withInAirFilter())));
-        FOXNIP_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, foxnipPlacement.getValue(), FOXNIP_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, foxnipPlacement);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_foxnip"), FOXNIP_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_frosted_foxnip"), FROSTED_FOXNIP_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_pulse_petal"), PULSE_PETAL_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_fairy_blossom"), FAIRY_BLOSSOM_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_jungle_gem"), JUNGLE_GEM_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_rose"), ROSE_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_sunset_poppy"), SUNSET_POPPY_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_muscari"), MUSCARI_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_purpureum"), PURPUREUM_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_midnight_orchid"), MIDNIGHT_ORCHID_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_hyacinth"), HYACINTH_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_snowfall"), SNOW_FALL_FLOWER_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_spiked_tulip"), SPIKED_TULIP_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_stonnete"), STONNETE_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_lunula"), LUNULA_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_anthurium"), ANTHURIUM_CONFIGURED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_scilla"), SCILLA_CONFIGURED);
+    }
 
-        //Frosted Foxnip
-        RegistryKey<ConfiguredFeature<?, ?>> frostedFoxnipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "frosted_foxnip_config"));
-        RegistryKey<PlacedFeature> frostedFoxnipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "frosted_foxnip_placed"));
-        FROSTED_FOXNIP_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, frostedFoxnipConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().frostedFoxnipDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FROSTED_FOXNIP))).withInAirFilter())));
-        FROSTED_FOXNIP_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, frostedFoxnipPlacement.getValue(), FROSTED_FOXNIP_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, frostedFoxnipPlacement);
+    public static void placedRegister() {
+        Registry<PlacedFeature> registry = BuiltinRegistries.PLACED_FEATURE;
 
-        //Pulse Petal
-        RegistryKey<ConfiguredFeature<?, ?>> pulsePetalConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "pulse_petal_config"));
-        RegistryKey<PlacedFeature> pulsePetalPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "pulse_petal_placed"));
-        PULSE_PETAL_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, pulsePetalConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().pulsePetalDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.PULSE_PETAL))).withInAirFilter())));
-        PULSE_PETAL_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, pulsePetalPlacement.getValue(), PULSE_PETAL_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, pulsePetalPlacement);
-
-        //Jungle Gem
-        RegistryKey<ConfiguredFeature<?, ?>> jungleGemConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "jungle_gem_config"));
-        RegistryKey<PlacedFeature> jungleGemPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "jungle_gem_placed"));
-        JUNGLE_GEM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, jungleGemConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().jungleGemDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.JUNGLE_GEM))).withInAirFilter())));
-        JUNGLE_GEM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, jungleGemPlacement.getValue(), JUNGLE_GEM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.JUNGLE), GenerationStep.Feature.VEGETAL_DECORATION, jungleGemPlacement);
-
-        //Rose
-        RegistryKey<ConfiguredFeature<?, ?>> roseConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "rose_config"));
-        RegistryKey<PlacedFeature> rosePlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "rose_placed"));
-        ROSE_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, roseConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().roseDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.ROSE))).withInAirFilter())));
-        ROSE_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, rosePlacement.getValue(), ROSE_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.MEADOW), GenerationStep.Feature.VEGETAL_DECORATION, rosePlacement);
-
-        //Sunset Poppy
-        RegistryKey<ConfiguredFeature<?, ?>> sunsetPoppyConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "sunset_poppy_config"));
-        RegistryKey<PlacedFeature> sunsetPoppyPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "sunset_poppy_placed"));
-        SUNSET_POPPY_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, sunsetPoppyConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().sunsetPoppyDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SUNSET_POPPY))).withInAirFilter())));
-        SUNSET_POPPY_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, sunsetPoppyPlacement.getValue(), SUNSET_POPPY_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SAVANNA), GenerationStep.Feature.VEGETAL_DECORATION, sunsetPoppyPlacement);
-
-        //Fairy Blossom
-        RegistryKey<ConfiguredFeature<?, ?>> fairyBlossomConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_config"));
-        RegistryKey<PlacedFeature> fairyBlossomPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "fairy_blossom_placed"));
-        FAIRY_BLOSSOM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, fairyBlossomConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().fairyBlossomDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.FAIRY_BLOSSOM))).withInAirFilter())));
-        FAIRY_BLOSSOM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, fairyBlossomPlacement.getValue(), FAIRY_BLOSSOM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.FLOWER_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, fairyBlossomPlacement);
-
-        //Muscari
-        RegistryKey<ConfiguredFeature<?, ?>> muscariConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "muscari_config"));
-        RegistryKey<PlacedFeature> muscariPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "muscari_placed"));
-        MUSCARI_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, muscariConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().muscariDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.MUSCARI))).withInAirFilter())));
-        MUSCARI_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, muscariPlacement.getValue(), MUSCARI_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES), GenerationStep.Feature.VEGETAL_DECORATION, muscariPlacement);
-
-        //Purpureum
-        RegistryKey<ConfiguredFeature<?, ?>> purpureumConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "purpureum_config"));
-        RegistryKey<PlacedFeature> purpureumPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "purpureum_placed"));
-        PURPUREUM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, purpureumConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().purpureumDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.PURPUREUM))).withInAirFilter())));
-        PURPUREUM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, purpureumPlacement.getValue(), PURPUREUM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, purpureumPlacement);
-
-        // Midnight_orchid
-        RegistryKey<ConfiguredFeature<?, ?>> midnight_orchidConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "midnight_orchid_config"));
-        RegistryKey<PlacedFeature> midnight_orchidPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "midnight_orchid_placed"));
-        MIDNIGHT_ORCHID_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, midnight_orchidConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().midnight_orchidDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.MIDNIGHT_ORCHID))).withInAirFilter())));
-        MIDNIGHT_ORCHID_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, midnight_orchidPlacement.getValue(), MIDNIGHT_ORCHID_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, midnight_orchidPlacement);
-
-        // NEW STUFF
-
-        // Hyacinth
-        RegistryKey<ConfiguredFeature<?, ?>> hyacinthConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "hyacinth_config"));
-        RegistryKey<PlacedFeature> hyacinthPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "hyacinth_placed"));
-        HYACINTH_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, hyacinthConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().hyacinthDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.HYACINTH))).withInAirFilter())));
-        HYACINTH_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, hyacinthPlacement.getValue(), HYACINTH_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.FLOWER_FOREST), GenerationStep.Feature.VEGETAL_DECORATION, hyacinthPlacement);
-        // Snow_fall_flower
-        RegistryKey<ConfiguredFeature<?, ?>> snow_fall_flowerConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "snow_fall_flower_config"));
-        RegistryKey<PlacedFeature> snow_fall_flowerPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "snow_fall_flower_placed"));
-        SNOW_FALL_FLOWER_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, snow_fall_flowerConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().snow_fall_flowerDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SNOW_FALL_FLOWER))).withInAirFilter())));
-        SNOW_FALL_FLOWER_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, snow_fall_flowerPlacement.getValue(), SNOW_FALL_FLOWER_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA, BiomeKeys.SNOWY_PLAINS, BiomeKeys.SNOWY_SLOPES, BiomeKeys.SNOWY_BEACH), GenerationStep.Feature.VEGETAL_DECORATION, snow_fall_flowerPlacement);
-        // Scilla
-        RegistryKey<ConfiguredFeature<?, ?>> scillaConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "scilla_config"));
-        RegistryKey<PlacedFeature> scillaPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "scilla_placed"));
-        SCILLA_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, scillaConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().scillaDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SCILLA))).withInAirFilter())));
-        SCILLA_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, scillaPlacement.getValue(), SCILLA_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.GROVE), GenerationStep.Feature.VEGETAL_DECORATION, scillaPlacement);
-        // Spiked_tulip
-        RegistryKey<ConfiguredFeature<?, ?>> spiked_tulipConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "spiked_tulip_config"));
-        RegistryKey<PlacedFeature> spiked_tulipPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "spiked_tulip_placed"));
-        SPIKED_TULIP_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, spiked_tulipConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().spiked_tulipDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.SPIKED_TULIP))).withBlockPredicateFilter(BlockPredicate.matchingBlocks(List.of(Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR), BlockPos.ORIGIN)))));
-        SPIKED_TULIP_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, spiked_tulipPlacement.getValue(), SPIKED_TULIP_CF.withPlacement(CountPlacementModifier.of(UniformIntProvider.create(26, 96)), SquarePlacementModifier.of(),PlacedFeatures.BOTTOM_TO_TOP_RANGE, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.DRIPSTONE_CAVES), GenerationStep.Feature.UNDERGROUND_DECORATION, spiked_tulipPlacement);
-        // Stonnete
-        RegistryKey<ConfiguredFeature<?, ?>> stonneteConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "stonnete_config"));
-        RegistryKey<PlacedFeature> stonnetePlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "stonnete_placed"));
-        STONNETE_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, stonneteConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().stonneteDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.STONNETE))).withBlockPredicateFilter(BlockPredicate.matchingBlocks(List.of(Blocks.AIR, Blocks.CAVE_AIR, Blocks.VOID_AIR), BlockPos.ORIGIN)))));
-        STONNETE_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, stonnetePlacement.getValue(), STONNETE_CF.withPlacement(CountPlacementModifier.of(UniformIntProvider.create(26, 41)), SquarePlacementModifier.of(),PlacedFeatures.BOTTOM_TO_TOP_RANGE, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.foundInOverworld(), GenerationStep.Feature.UNDERGROUND_DECORATION, stonnetePlacement);
-        // Lunula
-        RegistryKey<ConfiguredFeature<?, ?>> lunulaConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "lunula_config"));RegistryKey<PlacedFeature> lunulaPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "lunula_placed"));
-        LUNULA_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, lunulaConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().lunulaDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(BlockStateProvider.of(FloralBlocks.LUNULA))).withInAirFilter())));
-        LUNULA_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, lunulaPlacement.getValue(), LUNULA_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.SWAMP), GenerationStep.Feature.VEGETAL_DECORATION, lunulaPlacement);
-        // Anthurium
-
-        RegistryKey<ConfiguredFeature<?, ?>> anthuriumConfig = RegistryKey.of(Registry.CONFIGURED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "anthurium_config"));
-        RegistryKey<PlacedFeature> anthuriumPlacement = RegistryKey.of(Registry.PLACED_FEATURE_KEY, new Identifier(FloralFlair.MOD_ID, "anthurium_placed"));
-        ANTHURIUM_CF = Registry.register(BuiltinRegistries.CONFIGURED_FEATURE, anthuriumConfig.getValue(), Feature.FLOWER.configure(new RandomPatchFeatureConfig(64, FloralConfig.get().anthuriumDensity, 3, () -> Feature.SIMPLE_BLOCK.configure(new SimpleBlockFeatureConfig(ANTHURIUM_WEIGHTS)).withInAirFilter())));
-        ANTHURIUM_PF = Registry.register(BuiltinRegistries.PLACED_FEATURE, anthuriumPlacement.getValue(), ANTHURIUM_CF.withPlacement(RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of()));
-        BiomeModifications.addFeature(BiomeSelectors.categories(Biome.Category.FOREST), GenerationStep.Feature.VEGETAL_DECORATION, anthuriumPlacement);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_foxnip"), FOXNIP_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_frosted_foxnip"), FROSTED_FOXNIP_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_pulse_petal"), PULSE_PETAL_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_fairy_blossom"), FAIRY_BLOSSOM_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_jungle_gem"), JUNGLE_GEM_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_rose"), ROSE_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_sunset_poppy"), SUNSET_POPPY_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_muscari"), MUSCARI_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_purpureum"), PURPUREUM_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_midnight_orchid"), MIDNIGHT_ORCHID_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_hyacinth"), HYACINTH_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_snowfall"), SNOW_FALL_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_spiked_tulip"), SPIKED_TULIP_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_stonnete"), STONNETE_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_lunula"), LUNULA_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_anthurium"), ANTHURIUM_PLACED);
+        Registry.register(registry, new Identifier(FloralFlair.MOD_ID, "flower_scilla"), SCILLA_PLACED);
     }
 }
